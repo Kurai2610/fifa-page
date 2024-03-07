@@ -6,8 +6,9 @@ from users import views
 # using the "routers" model I create the necessary routes for each view in charge of a CRUD
 
 router = routers.DefaultRouter()
+router.register('customuser', views.CustomUserView, 'customuser')
 router.register('nationality', views.NationalityView, 'nationality')
-router.register('user', views.UserView, 'user')
+router.register('info', views.InfoView, 'info')
 router.register('role', views.RoleView, 'role')
 router.register('technician', views.TechnicianView, 'technician')
 router.register('team', views.TeamView, 'team')

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    # 'rest_framework.authtoken'
     "coreapi",
     "django_extensions",
     "users",
@@ -131,6 +132,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Cors settings
 
 CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173"
 ]
 
 # Extra module for documentation

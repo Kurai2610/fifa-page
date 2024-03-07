@@ -6,14 +6,19 @@ from users import serializer
 # inherit from models provided by rest-framework that automatically create the CRUD of a model.
 
 
+class CustomUserView(viewsets.ModelViewSet):
+    serializer_class = serializer.CustomUserSerializer
+    queryset = serializer.CustomUser.objects.all()
+
+
 class NationalityView(viewsets.ModelViewSet):
     serializer_class = serializer.NationalitySerializer
     queryset = serializer.Nationality.objects.all()
 
 
-class UserView(viewsets.ModelViewSet):
-    serializer_class = serializer.UserSerializer
-    queryset = serializer.User.objects.all()
+class InfoView(viewsets.ModelViewSet):
+    serializer_class = serializer.InfoSerializer
+    queryset = serializer.Info.objects.all()
 
 
 class RoleView(viewsets.ModelViewSet):

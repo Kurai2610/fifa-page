@@ -1,6 +1,39 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-# Create your models here.
+
+class CustomUser(AbstractUser):
+    ADMIN = 1
+    VIEWER = 2
+
+    ROLE_CHOICES = [
+        (ADMIN, 'Admin'),
+        (VIEWER, 'Viewer'),
+    ]
+    role = models.PositiveSmallIntegerField(
+        choices=ROLE_CHOICES, default=VIEWER, blank=False, null=False)
+
+    class Meta:
+        verbose_name = "CustomUser"
+        verbose_name_plural = "CustomUsers"
+
+    def __str__(self):
+        return super().__str__()
+
+    groups = models.ManyToManyField(
+        'auth.Group',
+        verbose_name='groups',
+        blank=True,
+        related_name='customuser_set',
+        related_query_name='user'
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        verbose_name='user permissions',
+        blank=True,
+        related_name='customuser_set',
+        related_query_name='user'
+    )
 
 
 class Nationality(models.Model):
@@ -17,7 +50,7 @@ class Nationality(models.Model):
         return self.name
 
 
-class User(models.Model):
+class Info(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     lastname = models.CharField(max_length=50, null=False, blank=False)
     birth_date = models.DateField(
@@ -26,10 +59,10 @@ class User(models.Model):
         "Nationality", verbose_name=("Nationality"), on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'User'
+        db_table = 'Info'
         managed = True
-        verbose_name = "User"
-        verbose_name_plural = "Users"
+        verbose_name = "Info"
+        verbose_name_plural = "Info"
 
     def __str__(self):
         return self.name
@@ -50,8 +83,8 @@ class Role(models.Model):
 
 
 class Technician(models.Model):
-    user_id = models.ForeignKey(
-        "User", verbose_name=("User"), on_delete=models.CASCADE)
+    info_id = models.ForeignKey(
+        "Info", verbose_name=("Additional Info"), on_delete=models.CASCADE)
     role_id = models.ForeignKey("Role", verbose_name=(
         "Role"), on_delete=models.CASCADE)
 
@@ -65,7 +98,7 @@ class Technician(models.Model):
         verbose_name_plural = 'Technicians'
         constraints = [
             models.UniqueConstraint(
-                fields=['user_id', 'role_id'], name='unique_technician')
+                fields=['info_id', 'role_id'], name='unique_technician')
         ]
 
 
@@ -108,8 +141,8 @@ class Player(models.Model):
         "Team", verbose_name=("Team"), on_delete=models.CASCADE)
     position_id = models.ForeignKey(
         "Position", verbose_name=("Position"), on_delete=models.CASCADE)
-    user_id = models.ForeignKey(
-        "User", verbose_name=("User"), on_delete=models.CASCADE)
+    info_id = models.ForeignKey(
+        "Info", verbose_name=("Additional Info"), on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user_id.name
