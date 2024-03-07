@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Nationality(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True,
+                            null=False, blank=False)
 
     class Meta:
         db_table = 'Nationality'
@@ -17,8 +18,8 @@ class Nationality(models.Model):
 
 
 class User(models.Model):
-    name = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=False, blank=False)
+    lastname = models.CharField(max_length=50, null=False, blank=False)
     birth_date = models.DateField(
         ("Birth Date"), auto_now=False, auto_now_add=False)
     nationality_id = models.ForeignKey(
@@ -35,7 +36,8 @@ class User(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True,
+                            null=False, blank=False)
 
     class Meta:
         db_table = 'Role'
@@ -68,9 +70,10 @@ class Technician(models.Model):
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    flag = models.TextField("Flag Image")
-    shield = models.TextField("Shield Image")
+    name = models.CharField(max_length=50, unique=True,
+                            null=False, blank=False)
+    flag = models.TextField("Flag Image", null=False, blank=False)
+    shield = models.TextField("Shield Image", null=False, blank=False)
 
     def __str__(self):
         return self.name
@@ -83,7 +86,8 @@ class Team(models.Model):
 
 
 class Position(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50, unique=True,
+                            null=False, blank=False)
     description = models.TextField()
 
     def __str__(self):
@@ -97,7 +101,8 @@ class Position(models.Model):
 
 
 class Player(models.Model):
-    player_number = models.CharField("Player Number", max_length=2)
+    player_number = models.CharField(
+        "Player Number", max_length=2, null=False, blank=False)
     starter = models.BooleanField()
     team_id = models.ForeignKey(
         "Team", verbose_name=("Team"), on_delete=models.CASCADE)

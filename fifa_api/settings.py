@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "coreapi",
+    "django_extensions",
     "users",
 ]
 
@@ -130,3 +132,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
 ]
+
+# Extra module for documentation
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+}
+
+# Graph models settings
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}

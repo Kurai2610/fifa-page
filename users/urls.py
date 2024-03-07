@@ -1,6 +1,9 @@
 from django.urls import path, include
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
 from users import views
+
+# using the "routers" model I create the necessary routes for each view in charge of a CRUD
 
 router = routers.DefaultRouter()
 router.register('nationality', views.NationalityView, 'nationality')
@@ -12,5 +15,6 @@ router.register('position', views.PositionView, 'position')
 router.register('player', views.PlayerView, 'player')
 
 urlpatterns = [
-    path('api/v1/', include(router.urls))
+    path('api/v1/', include(router.urls)),
+    path('docs/', include_docs_urls(title='Soccer API'))
 ]
