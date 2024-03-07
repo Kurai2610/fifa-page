@@ -51,10 +51,10 @@ class Technician(models.Model):
     user_id = models.ForeignKey(
         "User", verbose_name=("User"), on_delete=models.CASCADE)
     role_id = models.ForeignKey("Role", verbose_name=(
-        "Rolle"), on_delete=models.CASCADE)
+        "Role"), on_delete=models.CASCADE)
 
     def __str__(self):
-        pass
+        return self.user_id.name
 
     class Meta:
         db_table = 'Technician'
@@ -73,7 +73,7 @@ class Team(models.Model):
     shield = models.TextField("Shield Image")
 
     def __str__(self):
-        pass
+        return self.name
 
     class Meta:
         db_table = 'Team'
@@ -87,7 +87,7 @@ class Position(models.Model):
     description = models.TextField()
 
     def __str__(self):
-        pass
+        return self.name
 
     class Meta:
         db_table = 'Position'
@@ -107,7 +107,7 @@ class Player(models.Model):
         "User", verbose_name=("User"), on_delete=models.CASCADE)
 
     def __str__(self):
-        pass
+        return self.user_id.name
 
     class Meta:
         db_table = 'Player'
