@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import CustomUser, Nationality, Info, Role, Technician, Team, Position, Player
+from .models import Nationality, Info, Role, Technician, Team, Position, Player, User
 
 # Use the Django REST framework serializers for convert complex data to JSON
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = '__all__'
+        model = User
+        fields = ['id', 'username', 'email', 'password']
 
 
 class NationalitySerializer(serializers.ModelSerializer):

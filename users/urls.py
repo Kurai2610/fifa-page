@@ -6,7 +6,7 @@ from users import views
 # using the "routers" model I create the necessary routes for each view in charge of a CRUD
 
 router = routers.DefaultRouter()
-router.register('customuser', views.CustomUserView, 'customuser')
+router.register('user', views.UserView, 'user')
 router.register('nationality', views.NationalityView, 'nationality')
 router.register('info', views.InfoView, 'info')
 router.register('role', views.RoleView, 'role')
@@ -17,5 +17,7 @@ router.register('player', views.PlayerView, 'player')
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
-    path('docs/', include_docs_urls(title='Soccer API'))
+    path('docs/', include_docs_urls(title='Soccer API')),
+    path('login/', views.login),
+    path('register/', views.register)
 ]

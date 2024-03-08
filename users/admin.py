@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import CustomUser, Nationality, Info, Role, Technician, Team, Position, Player
+from .models import Nationality, Info, Role, Technician, Team, Position, Player
 
 
 # Register your models here.
-admin.site.register(CustomUser)
 admin.site.register(Nationality)
 admin.site.register(Info)
 admin.site.register(Role)

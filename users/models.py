@@ -1,39 +1,7 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
-
-class CustomUser(AbstractUser):
-    ADMIN = 1
-    VIEWER = 2
-
-    ROLE_CHOICES = [
-        (ADMIN, 'Admin'),
-        (VIEWER, 'Viewer'),
-    ]
-    role = models.PositiveSmallIntegerField(
-        choices=ROLE_CHOICES, default=VIEWER, blank=False, null=False)
-
-    class Meta:
-        verbose_name = "CustomUser"
-        verbose_name_plural = "CustomUsers"
-
-    def __str__(self):
-        return super().__str__()
-
-    groups = models.ManyToManyField(
-        'auth.Group',
-        verbose_name='groups',
-        blank=True,
-        related_name='customuser_set',
-        related_query_name='user'
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        verbose_name='user permissions',
-        blank=True,
-        related_name='customuser_set',
-        related_query_name='user'
-    )
+User = get_user_model()
 
 
 class Nationality(models.Model):
