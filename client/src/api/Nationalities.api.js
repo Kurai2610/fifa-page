@@ -6,7 +6,7 @@ const NationalityApi = axios.create({
 
 export const getAllNationalities = () => NationalityApi.get("/");
 
-export const getNationality = (id) => NationalityApi.get(`/${id}/`);
+export const getNationality = (id) => NationalityApi.get(`/${id}`);
 
 export const createNationality = (nationality) =>
   NationalityApi.post("/", nationality);
