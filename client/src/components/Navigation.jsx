@@ -8,6 +8,7 @@ export function Navigation() {
       </Link>
       <Link to="/players">Players</Link>
       <Link to="/nationalities">Nationalities</Link>
+      <Link to="/nationality_form">Nationality form</Link>
     </div>
   );
 }

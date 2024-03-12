@@ -57,7 +57,7 @@ class Technician(models.Model):
         "Role"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_id.name
+        return self.info_id.name
 
     class Meta:
         db_table = 'Technician'
@@ -113,7 +113,7 @@ class Player(models.Model):
         "Info", verbose_name=("Additional Info"), on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user_id.name
+        return self.info_id.name
 
     class Meta:
         db_table = 'Player'

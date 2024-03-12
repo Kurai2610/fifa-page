@@ -3,6 +3,7 @@ import { Home } from "./pages/Home";
 import { Nationalities } from "./pages/Nationalities";
 import { Players } from "./pages/Players";
 import { Navigation } from "./components/Navigation";
+import { NationalityForm } from "./pages/NationalityForm";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
         <Route path="/nationalities" element={<Nationalities />} />
+        <Route path="/nationalities/:id" element={<NationalityForm />} />
+        <Route path="/nationality_form" element={<NationalityForm />} />
         <Route path="/players" element={<Players />} />
       </Routes>
     </BrowserRouter>

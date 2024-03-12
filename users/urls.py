@@ -17,7 +17,7 @@ router.register('player', views.PlayerView, 'player')
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
+    path('api/v1/login/', views.login),
+    path('api/v1/register/', views.register),
     path('docs/', include_docs_urls(title='Soccer API')),
-    path('login/', views.login),
-    path('register/', views.register)
 ]

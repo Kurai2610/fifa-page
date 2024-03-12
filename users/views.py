@@ -39,57 +39,41 @@ def register(request):
 # Las clases de vista para los modelos de tu aplicación siguen igual.
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class UserView(viewsets.ModelViewSet):
     serializer_class = serializer.UserSerializer
     queryset = serializer.User.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class NationalityView(viewsets.ModelViewSet):
     serializer_class = serializer.NationalitySerializer
     queryset = serializer.Nationality.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class InfoView(viewsets.ModelViewSet):
     serializer_class = serializer.InfoSerializer
     queryset = serializer.Info.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class RoleView(viewsets.ModelViewSet):
     serializer_class = serializer.RoleSerializer
     queryset = serializer.Role.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class TechnicianView(viewsets.ModelViewSet):
     serializer_class = serializer.TechnicianSerializer
     queryset = serializer.Technician.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class TeamView(viewsets.ModelViewSet):
     serializer_class = serializer.TeamSerializer
     queryset = serializer.Team.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class PositionView(viewsets.ModelViewSet):
     serializer_class = serializer.PositionSerializer
     queryset = serializer.Position.objects.all()
 
 
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 class PlayerView(viewsets.ModelViewSet):
     serializer_class = serializer.PlayerSerializer
     queryset = serializer.Player.objects.all()
