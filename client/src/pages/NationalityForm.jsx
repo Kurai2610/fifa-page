@@ -7,6 +7,7 @@ import {
   getNationality,
 } from "../api/Nationalities.api";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export function NationalityForm() {
   const {
@@ -23,8 +24,24 @@ export function NationalityForm() {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updateNationality(params.id, data);
+      toast.success("País actualizado", {
+        duration: 2000,
+        position: "bottom-right",
+        style: {
+          background: "#4caf50",
+          color: "#ffffff",
+        },
+      });
     } else {
       await createNationality(data);
+      toast.success("País creado", {
+        duration: 2000,
+        position: "bottom-right",
+        style: {
+          background: "#4caf50",
+          color: "#ffffff",
+        },
+      });
     }
     navigate("/nationalities");
   });
@@ -59,6 +76,14 @@ export function NationalityForm() {
             if (accept) {
               await deleteNationality(params.id);
               navigate("/nationalities");
+              toast.success("País eliminado", {
+                duration: 2000,
+                position: "bottom-right",
+                style: {
+                  background: "#4caf50",
+                  color: "#ffffff",
+                },
+              });
             }
           }}
         >
