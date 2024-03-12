@@ -1,3 +1,13 @@
+import { PlayerList } from "../components/PlayerList";
+
 export function Players() {
-  return <div>Players</div>;
+  return (
+    <div>
+      <h1>Players</h1>
+      <p>This is the players page</p>
+      <hr />
+      {/* <PlayerList /> */}
+      <PlayerList />
+    </div>
+  )
 }

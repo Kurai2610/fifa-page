@@ -26,7 +26,7 @@ export function NationalityForm() {
       await updateNationality(params.id, data);
       toast.success("País actualizado", {
         duration: 2000,
-        position: "bottom-right",
+        position: "top-center",
         style: {
           background: "#4caf50",
           color: "#ffffff",
@@ -36,7 +36,7 @@ export function NationalityForm() {
       await createNationality(data);
       toast.success("País creado", {
         duration: 2000,
-        position: "bottom-right",
+        position: "top-center",
         style: {
           background: "#4caf50",
           color: "#ffffff",
@@ -78,7 +78,7 @@ export function NationalityForm() {
               navigate("/nationalities");
               toast.success("País eliminado", {
                 duration: 2000,
-                position: "bottom-right",
+                position: "top-center",
                 style: {
                   background: "#4caf50",
                   color: "#ffffff",

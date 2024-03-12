@@ -46,7 +46,6 @@ export function Home() {
       >
         Aqui podrás ver los jugadores y equipos
       </p>
-      <PlayerCard playerId={1} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { Edit } from "./pages/Edit";
 import { Nationalities } from "./pages/Nationalities";
 import { Players } from "./pages/Players";
 import { Navigation } from "./components/Navigation";
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/edit" element={<Edit />} />
         <Route path="/nationalities" element={<Nationalities />} />
         <Route path="/nationalities/:id" element={<NationalityForm />} />
         <Route path="/nationality_form" element={<NationalityForm />} />

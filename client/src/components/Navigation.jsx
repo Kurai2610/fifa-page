@@ -39,6 +39,14 @@ export function Navigation() {
         <ul className="flex space-x-4">
           <li>
             <Link
+              to="/edit"
+              className="text-white bg-green-500 px-4 py-2 rounded hover:bg-green-600"
+            >
+              Editar
+            </Link>
+          </li>
+          <li>
+            <Link
               to="/sign-in"
               className="text-white bg-red-500 px-4 py-2 rounded hover:bg-red-600"
             >
