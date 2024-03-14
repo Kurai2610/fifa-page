@@ -1,5 +1,3 @@
-import { PlayerCard } from "../components/PlayerCard";
-
 export function Home() {
   return (
     <div

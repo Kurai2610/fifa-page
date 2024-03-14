@@ -2,12 +2,12 @@ import { PlayerList } from "../components/PlayerList";
 
 export function Players() {
   return (
-    <div>
-      <h1>Players</h1>
-      <p>This is the players page</p>
+    <div className="container mx-auto text-center mt-5">
+      <h1 className="text-4xl font-bold mb-4">Jugadores</h1>
       <hr />
-      {/* <PlayerList /> */}
-      <PlayerList />
+      <div className="mt-8">
+        <PlayerList />
+      </div>
     </div>
-  )
+  );
 }

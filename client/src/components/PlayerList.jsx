@@ -1,43 +1,38 @@
-import { useEffect, useState, useRef } from "react";
-import { getAllPlayers, getPlayerData } from "../api/Player.api";
+import { useState, useEffect } from "react";
+import { getAllPlayers, getPlayer } from "../api/Player.api";
+import { PlayerCard } from "./PlayerCard";
 
-export function PlayerList() {
+export const PlayerList = () => {
   const [players, setPlayers] = useState([]);
-  const playersRef = useRef([]);
-
-  const loadPlayerData = async (playerId) => {
-    const playerData = await getPlayerData(playerId);
-    setPlayers((prevPlayers) =>
-      prevPlayers.map((p) => (p.id === playerId ? { ...p, ...playerData } : p))
-    );
-  };
 
   useEffect(() => {
-    async function loadPlayers() {
-      const res = await getAllPlayers();
-      setPlayers(res.data);
-      playersRef.current = res.data;
-    }
+    const fetchPlayers = async () => {
+      try {
+        const response = await getAllPlayers();
+        const playerIds = response.data.map((player) => player.id);
+        const playerDataPromises = playerIds.map((id) => getPlayer(id));
+        const playerData = await Promise.all(playerDataPromises);
+        setPlayers(playerData);
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
 
-    loadPlayers();
-  }, []);
-
-  useEffect(() => {
-    playersRef.current.forEach((player) => {
-      loadPlayerData(player.id);
-    });
+    fetchPlayers();
   }, []);
 
   return (
-    <div>
-      {players.map((player, index) => (
-        <div key={index}>
-          <h2>{player.name}</h2>
-          <p>{player.position}</p>
-          <pre>{JSON.stringify(player, null, 2)}</pre>
-          <hr />
-        </div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: "1rem",
+        justifyContent: "center",
+      }}
+    >
+      {players.map((player) => (
+        <PlayerCard key={player.id} player={player} />
       ))}
     </div>
   );
-}
+};

@@ -1,38 +1,34 @@
 import axios from "axios";
+import { getInfo } from "./Info.api";
 
 const PlayerApi = axios.create({
   baseURL: "http://localhost:8000/api/v1/",
 });
 
-export const getAllPlayers = async () => {
+export const getAllPlayers = () => PlayerApi.get("player/");
+export const getPlayer = async (id) => {
   try {
-    const playerResponse = await PlayerApi.get(`player/${id}`);
-    const playerData = playerResponse.data;
+    const response = await PlayerApi.get(`player/${id}`);
+    const playerData = response.data;
 
     const teamResponse = await PlayerApi.get(`team/${playerData.team_id}`);
-    const teamData = teamResponse.data;
-
     const positionResponse = await PlayerApi.get(
       `position/${playerData.position_id}`
     );
-    const positionData = positionResponse.data;
-
-    const infoResponse = await PlayerApi.get(`info/${playerData.info_id}`);
-    const infoData = infoResponse.data;
+    const infoResponse = await getInfo(playerData.info_id);
 
     return {
-      player: playerData,
-      team: teamData,
-      position: positionData,
-      info: infoData,
+      ...playerData,
+      teamName: teamResponse.data.name,
+      position: positionResponse.data.name,
+      info: infoResponse,
+      nationality: infoResponse.nationality,
     };
   } catch (error) {
-    console.error("Error retrieving player data:", error);
+    console.error("Error in getPlayer", error);
     throw error;
   }
 };
-
-export const getPlayer = (id) => PlayerApi.get(`player/${id}`);
 export const createPlayer = (data) => PlayerApi.post("player/", data);
 export const deletePlayer = (id) => PlayerApi.delete(`player/${id}`);
 export const updatePlayer = (id, data) => PlayerApi.put(`player/${id}/`, data);
