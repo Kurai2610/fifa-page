@@ -5,7 +5,15 @@ const RoleApi = axios.create({
 });
 
 export const getAllRole = () => RoleApi.get("/");
-export const getRole = (id) => RoleApi.get(`/${id}/`);
+export const getRole = async (id) => {
+  try {
+    const response = await RoleApi.get(`/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error in getRole", error);
+    throw error;
+  }
+};
 export const createRole = (data) => RoleApi.post("/", data);
 export const deleteRole = (id) => RoleApi.delete(`/${id}/`);
 export const updateRole = (id, data) => RoleApi.put(`/${id}/`, data);
